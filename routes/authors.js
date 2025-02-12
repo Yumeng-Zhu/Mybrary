@@ -2,23 +2,24 @@
 const express = require('express')
 const router = express.Router()
 const Author = require('../models/authors')
-const { error } = require('console')
+// const { error } = require('console')
 
 //all authors' route
-router.get('/', async (req,res) => {
+router.get('/', async (req,res) => { //get use 'query', post use 'body'
     let searchOptions = {}
-    if (req.query.name != null && req.query.name !== ''){
+    if (req.query.name != null && req.query.name != ''){
         searchOptions.name = new RegExp(req.query.name, 'i')
     }
     try{
         const authors = await Author.find(searchOptions)
         res.render('authors/index', {
             authors: authors,
-            searchOptions: req.query})
-    } catch{
+            searchOptions: req.query
+        })
+    } catch {
         res.redirect('/')
     }
-   
+    console.log("Search Options:", searchOptions);
 })
 
 //new author
@@ -33,7 +34,7 @@ router.post('/', async (req,res) => {
     })
     try {
         const newAuthor = await author.save()
-        res.render('authors')
+        res.redirect('authors') //this is where the bug, identidy the redirect and render
     } catch {
         res.render('authors/new',{
             author: author,

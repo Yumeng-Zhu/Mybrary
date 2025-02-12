@@ -1,12 +1,12 @@
 <div>
     <label> Title </label>
-    <input type = "text" name = "name" value ="<%= book.title%>" > 
+    <input type = "text" name = "title" value ="<%= book.title || 'type in your title'  %>" > 
 </div>
 <div>
     <label> Author </label>
     <select name = "author">
     <% authors.forEach(author => { %>
-        <% if (author.id === book.author) { %>
+        <% if (author.id == book.author) { %> 
             <option selected label="<%= author.name %>" value = "<%= author.id %>">
         <%} else {%>
             <option label="<%= author.name %>" value = "<%= author.id %>">
@@ -17,14 +17,14 @@
 <div>
     <label> Publish Date </label>
     <input type = "date" name = "publishDate" 
-        value ="<%= book.publishDate == null ? '' : 
+        value="<%= book.publishDate == null ? '' : 
         book.publishDate.toISOString().split('T')[0]%>"> 
         <!-- ? equals to if, : equals to else -->
-        <!-- .toISOString().split('T')[0] only get the data from unsplit ISOString (2021-02-10,T,00:00)-->
+        <!-- .toISOString().split('T')[0] only get the 0 data from split ISOString (2021-02-10,T,00:00)-->
 </div>
 <div>
     <label> Page Count </label>
-    <input type = "number" name = "PageCount" min = "1" value ="<%= book.pageCount %>" > 
+    <input type = "number" name = "pageCount" min = "1" value ="<%= book.pageCount %>" > 
 </div>
 <div>
     <label> Cover </label>
@@ -32,5 +32,5 @@
 </div>
 <div>
     <label> Description </label>
-    <textarea name = "description"><%= book.description%></textarea>
+    <textarea name = "description"><%= book.description %></textarea>
 </div>

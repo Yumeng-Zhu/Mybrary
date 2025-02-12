@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const path = require('path')
 
 const coverImageBasePath = 'uploads/bookCovers' //image will be stored here
 
@@ -18,7 +19,7 @@ const bookSchema = new mongoose.Schema({
         type: Number,
         required: true
     },
-    cretedAt:{
+    createdAt:{
         type: Date,
         required: true,
         default: Date.now
@@ -28,9 +29,9 @@ const bookSchema = new mongoose.Schema({
         required: true
     },
     author: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: mongoose.Schema.Types.ObjectId, //the author is the book's id
         required: true,
-        Ref:'Author'
+        ref:'Author'
     },
 })
 
