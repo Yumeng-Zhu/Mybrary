@@ -1,7 +1,9 @@
-<h2>Edit Book</h2>
+<h2 class="page-header">Edit Book</h2>
 <form action = "/books/<%= book.id %>?_method=PUT" method="POST">
     <%- include('_form_fields') %>
-    <a href="/books"> Cancel</a>
+    <div class = "form-row form-row-end ben-row">
+        <a class = "btn btn-danger" href="/books"> Cancel</a>
     <!-- the href URL is missing a leading / to correctly resolve the path. It should be: -->
-    <button type = "submit"> Update </button>
+        <button class = "btn btn-primary" type = "submit"> Update </button>
+    </div>
 </form>

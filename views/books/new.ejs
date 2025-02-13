@@ -1,10 +1,12 @@
-<h2>New Book</h2>
+<h2 class="page-header">New Book</h2>
 <!-- <form action = "/books" method = "POST" enctype="multipart/form-data">  -->
 <!-- as the use of Filepond change the object to Filepond type, meaning that the cover is not sent through image, rather, it is sent through .json . 
     SO WE DELETEED all the code related to upload multipart data, upload cover, etc.-->
 <form action = "/books" method = "POST"> 
 <!-- multipart/form-data allows to upload files -->
     <%- include('_form_fields') %>
-    <a href = "/books">Cancel</a>
-    <button type = "submit">Create</button>
+    <div class ="form-row form-row-end btn-row">
+        <a class="btn btn-danger" href = "/books">Cancel</a>
+        <button class="btn btn-primary" type = "submit">Create</button>
+    </div>
 </form>
