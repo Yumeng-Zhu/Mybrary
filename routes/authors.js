@@ -35,7 +35,8 @@ router.post('/', async (req,res) => {
     })
     try {
         const newAuthor = await author.save()
-        res.redirect(`authors/${author.id}`) //this is where the bug, identidy the redirect and render
+        // res.redirect(`authors/${author.id}`) //this is where the bug, identidy the redirect and render
+        res.redirect('/authors')
     } catch {
         res.render('authors/new',{
             author: author,
@@ -101,16 +102,20 @@ router.put('/:id', async (req, res) => {
 
 router.delete('/:id', async(req, res) => {
     let author
+    console.log("Delete request received for ID:", req.params.id)
+
     try {
         author = await Author.findById(req.params.id)
         // console.log('found successfully', req.params.id)
         await author.deleteOne()
+        console.log("Delete Result:", author.deleteOne())
         // console.log('removed successfully')
         res.redirect('/authors') //this is where the bug, identidy the redirect and render
-    } catch {
+    } catch(err) {
         if (author == null){
             res.redirect('/')
         } else{
+            console.error("Error deleting author:", err)
             res.redirect(`/authors/${author.id}`)
             // console.log('failed to delete')
         }
